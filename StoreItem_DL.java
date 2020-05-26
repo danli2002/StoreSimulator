@@ -43,7 +43,8 @@ public class StoreItem_DL{
 	}
 
 	public String toString(){
-		String itemString = String.format("%-15s %-15.2f %-15d %-15d %-15.2f %-15.2f",n,rPrice,quantity,bulkQuantity,bPrice,pIndex); // returns a formatted string so it can be easily printed out
+		String itemString = String.format("%-15s %-15.2f %-15d %-15d %-15.2f %-15.2f",
+		n,rPrice,quantity,bulkQuantity,bPrice,pIndex); // returns a formatted string so it can be easily printed out
 		return itemString;
 	}
 }

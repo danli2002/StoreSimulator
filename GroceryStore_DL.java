@@ -4,6 +4,7 @@ public class GroceryStore_DL{
 	ScannerReadFile scanner = new ScannerReadFile();
 	ArrayList<String> data = scanner.returnData();
 	StoreItem_DL[] items = new StoreItem_DL[data.size() / 5];
+	Finances_DL finances = new Finances_DL();
 	private int currentDay = 0;
 	public GroceryStore_DL(){
 		init();
@@ -22,9 +23,8 @@ public class GroceryStore_DL{
 		}
 	}
 
-	public final void init(){
-		System.out.println(data);
-		this.populateItems();
+	public void init(){
+		populateItems();
 		System.out.printf("%-15s","Item Name");
 		System.out.printf("%-15s","Item Price");
 		System.out.printf("%-15s","Item Quantity");
@@ -36,6 +36,7 @@ public class GroceryStore_DL{
 		for(int q = 0; q < items.length; q++){
 			System.out.println(items[q].toString());
 		}
+		finances.applyForLoan(5000);
 
 	}
 
