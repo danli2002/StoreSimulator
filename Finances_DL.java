@@ -1,9 +1,9 @@
 public class Finances_DL{
 
-	private double balance;
-	private double debt;
-	private double creditScore; // default credit score
-	private double interestRate;
+	public double balance;
+	public double debt;
+	public double creditScore; // default credit score
+	public double interestRate;
 
 	public Finances_DL(){
 		 balance = 100;
@@ -13,6 +13,8 @@ public class Finances_DL{
 	}
 
 	public double getBalance(){return balance;}
+
+	public void addBalance(double amt){balance += amt;}
 
 	public double getDebt(){return debt;}
 
@@ -68,6 +70,7 @@ public class Finances_DL{
 
 	}
 
+	// How to pay back debt! 
 	public void payDebt(double amt){
 		if (amt <= 0){
 			System.out.println("Invalid amount");

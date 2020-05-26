@@ -1,9 +1,4 @@
-Toilet Paper,5.00,25,30,0.65
-Toilet Paper,5.00,25,30,0.65
-Toilet Paper,5.00,25,30,0.65
-Toilet Paper,5.00,25,30,0.65
-Toilet Paper,5.00,25,30,0.65
-Toilet Paper,5.00,25,30,0.65
-Toilet Paper,5.00,25,30,0.65
-Toilet Paper,5.00,25,30,0.65
+Toilet Paper,5.00,25,30,0.75
+Gucci,300.00,25,30,0.25
+
 

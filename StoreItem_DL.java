@@ -2,17 +2,17 @@ import java.util.ArrayList;
 
 public class StoreItem_DL{
 	
-	private String n; // name of the item
-	private double rPrice; // retail price of the item
-	private int bulkQuantity; // number of units in a bulk quantity
-	private double bPrice; // price of a bulk purchase of the specific item
-	private int quantity; // quantity of specific item in stock
-	private double pIndex; // a number that basically tells how popular an item is, determines sales
+	public String n; // name of the item
+	public double rPrice; // retail price of the item
+	public int bulkQuantity; // number of units in a bulk quantity
+	public double bPrice; // price of a bulk purchase of the specific item
+	public int quantity; // quantity of specific item in stock
+	public double pIndex; // a number that basically tells how popular an item is, determines sales
 	
 	public StoreItem_DL(String name, double retailPrice, int bulkQuant, double bulkPrice, double popIndex){
 		n = name;
 		rPrice = retailPrice;
-		quantity = 0; // quantity of items are always going to start a zero
+		quantity = 50; // quantity of items are always going to start a zero
 		bulkQuantity = bulkQuant;
 		bPrice = bulkPrice;
 		pIndex = popIndex;
@@ -47,6 +47,7 @@ public class StoreItem_DL{
 		n,rPrice,quantity,bulkQuantity,bPrice,pIndex); // returns a formatted string so it can be easily printed out
 		return itemString;
 	}
+
 }
 
 
