@@ -4,5 +4,10 @@ Basic game that simulates running a small store. Buy bulk product, sell them at 
 # To-do
 * Fix some poorly written code (mathematical models and such)
 * Add random events (pandemics, disasters, economic crisis)
-* Finish the financing system (bank loans, credit score, etc.)
+* ~Finish the financing system (bank loans, credit score, etc.)~ Finished 5/27/20!
 * Port everything to an easy to use GUI with jFrame (pretty tough)
+
+# Preview Images
+![Daily View Panel](https://imgur.com/m6GaZTu)
+![Taking out a Loan](https://imgur.com/BZyklUk)
+![Buying Stock](https://imgur.com/zGXJ75j)
