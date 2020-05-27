@@ -1,3 +1,10 @@
+/*
+    A class that handles individual items inside of the grocery store.
+
+    by Daniel Li
+    5/27/20
+*/
+
 import java.util.ArrayList;
 
 public class StoreItem_DL{
@@ -12,7 +19,7 @@ public class StoreItem_DL{
     public StoreItem_DL(String name, double retailPrice, int bulkQuant, double bulkPrice, double popIndex){
         n = name;
         rPrice = retailPrice;
-        quantity = 50; // quantity of items are always going to start a zero
+        quantity = 50; // quantity of items are always going to start at this(DEBUG PURPOSES)
         bulkQuantity = bulkQuant;
         bPrice = bulkPrice;
         pIndex = popIndex;
