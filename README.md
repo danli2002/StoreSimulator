@@ -8,6 +8,6 @@ Basic game that simulates running a small store. Buy bulk product, sell them at 
 * Port everything to an easy to use GUI with jFrame (pretty tough)
 
 # Preview Images
-![Daily View Panel](https://imgur.com/m6GaZTu)
-![Taking out a Loan](https://imgur.com/BZyklUk)
-![Buying Stock](https://imgur.com/zGXJ75j)
+![Daily View Panel](https://i.imgur.com/m6GaZTu.png)
+![Taking out a Loan](https://i.imgur.com/BZyklUk.png)
+![Buying Stock](https://i.imgur.com/zGXJ75j.png)
