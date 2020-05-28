@@ -80,14 +80,14 @@ public class GroceryStore_DL{
             
             // A poorly thought out way of figuring out how much would sell on a given day, need to clean this up later
             double dropOff = (Math.pow(0.0489769,item.getPIndex()) * 100);
-            System.out.println(String.format("Dropoff: %.2f",dropOff));
+            //System.out.println(String.format("Dropoff: %.2f",dropOff));
             double seed = (Math.random() * dropOff * 1.2)/100;
             
             // avoid selling "negative" amounts of goods
-            System.out.println(String.format("seed: %.2f",seed));
+            //System.out.println(String.format("seed: %.2f",seed));
             if(item.getPIndex() * 100 - dropOff >= 0){
                 saleRate = ((item.getPIndex() - dropOff/100) + seed);
-                System.out.println(saleRate);
+                //System.out.println(saleRate);
             }
             else{
                 saleRate = 0;
@@ -127,6 +127,7 @@ public class GroceryStore_DL{
         System.out.println();
     }
 
+    // prints out a long line of dashes to keep stuff neat and organized, visually appealing
     public void printSeparator(){
         System.out.println();
         for(int i = 0; i < 30; i++){
@@ -134,7 +135,7 @@ public class GroceryStore_DL{
         }
         System.out.println();
     }
-
+    // generates headlines for the day, returns to a string so new headlines can't be generated everyday
     public String generateHeadlines(){
         String indEventsFormat = "\n[Today's News:]\n\n";
         double coinflip = Math.random();
@@ -160,6 +161,7 @@ public class GroceryStore_DL{
             //System.out.println("\n[Day " + currentDay + "]\n");
             showNavMenu();
             try{
+                // gotta create a new scanner object so this whole try catch expression doesn't throw you in an infinite loop
                 Scanner inputScan = new Scanner(System.in);
                 int choice = inputScan.nextInt();
                 switch(choice){
@@ -190,12 +192,12 @@ public class GroceryStore_DL{
                     }
                     break;
                 case 4:
-                    dailySale();
-                    dailyHeadlines = generateHeadlines();
+                    dailySale(); // simulate a days worth of sales
+                    dailyHeadlines = generateHeadlines(); // generate new headlines every day
                     currentDay += 1;
-                    finances.incrementLoanDays(1);
+                    finances.incrementLoanDays(1); // counter for loans, how long has it been since I took out my last loan?
                     utilityBillCounter += 1;
-                    if(utilityBillCounter == 7){
+                    if(utilityBillCounter == 7){ // pay utility bills every 7 days, or every week
                         finances.payUtilities();
                         System.out.println("You just paid your weekly $" + finances.getUtilCost() + " utility costs.\n");
                         utilityBillCounter = 0;

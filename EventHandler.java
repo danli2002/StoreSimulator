@@ -12,8 +12,10 @@ public class EventHandler{
 
     public String indShock(StoreItem_DL item){
         double coinflip = Math.random();
+        // 50/50 chance of getting a demand shock in any of these products
         if (coinflip > 0.5){
-            double change = Math.random() + 0.5;
+            double change = Math.random() + 0.2;
+            // headlines associated with positive demand shocks
             String[] posHeadlines = {
                     String.format("A new study shows that %s is very beneficial to health",item.getName()),
                     String.format("TikTok stars are promoting %s like crazy!",item.getName()),
@@ -21,13 +23,15 @@ public class EventHandler{
                     String.format("Reports show that prices of %s are going to skyrocket in the future!",item.getName())
                     };
 
+            // headlines associated with negative demand shocks
             String[] negHeadlines = {
                     String.format("A new study shows that %s is very harmful to health",item.getName()),
                     String.format("TikTok star denounces %s",item.getName()),
                     String.format("Who even likes %s anymore? Was it just a fad?",item.getName()),
                     String.format("Reports show that prices of %s are going to plummet in the future!",item.getName())
                     };
-                
+            // change pop indexes
+
             if(change > 1){
                 if(item.getPIndex() * change > 1){
                     item.setPIndex(1);
@@ -44,12 +48,14 @@ public class EventHandler{
                 return negHeadlines[seed];
             }
         }
+        // returns nothing if there's no news, this sucks because it generates a lot of unnecessary whitespace. 
         else{return "";}
 
     }
-
+    // demand shocks that affect the all goods
     public String marketShock(StoreItem_DL[] items){
-        double change = Math.random() + 0.5;
+        double change = Math.random() + 0.2;
+        // headlines, might need to add a txt file with a bunch of these
         String[] negHeadlines = {
                 "A pandemic has caused the government to discourage shopping",
                 "A financial recession has hit and is underway",
@@ -63,7 +69,8 @@ public class EventHandler{
                 "A new cult has arisen that praises the acquisition of material goods",
                 "Federal income tax has been lowered, Americans spending like crazy!",
                 "A boost in population of the local town means there will be more shoppers demanding products"};
-            
+        
+        // how much to change the popularity indexes by?
         if(change > 0){
             for(int i =0; i < items.length; i++){
                 StoreItem_DL item = items[i];

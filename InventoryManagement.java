@@ -26,7 +26,7 @@ public class InventoryManagement{
                     System.out.println(confirmation);
                 }
                 else if(choice.equals("n") || choice.equals("N")) {
-                    System.out.println("\nYou have cancelled the transaction. You have not been charged.\n");
+                    System.out.println("\nYou have cancelled the transaction. You have not been charged.");
                 }
                 else{
                     System.out.println("\nYou have entered an invalid input, please try the transaction again.\n");

@@ -21,9 +21,9 @@ public class Finances_DL{
     Scanner input = new Scanner(System.in);
 
     public Finances_DL(){
-         balance = 100;
+         balance = 0;
          debt = 0;
-         creditScore = 500;
+         creditScore = 650;
          interestRate = 0;
     }
 
