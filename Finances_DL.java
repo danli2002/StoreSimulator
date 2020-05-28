@@ -11,13 +11,13 @@ import java.util.*;
 
 public class Finances_DL{
 
-    public double balance;
-    public double debt;
-    public double creditScore; // default credit score
-    public double interestRate;
-    public static final int utilityCost = 200; // weekly costs of utilities
-    public int daysSinceLastLoan = 2; // avoid loan spamming
-    public boolean menuRunning = true; // controls the 'active' state of the menu
+    private double balance;
+    private double debt;
+    private double creditScore; // default credit score
+    private double interestRate;
+    private static final int utilityCost = 200; // weekly costs of utilities
+    private int daysSinceLastLoan = 2; // avoid loan spamming
+    private boolean menuRunning = true; // controls the 'active' state of the menu
     Scanner input = new Scanner(System.in);
 
     public Finances_DL(){
@@ -39,8 +39,18 @@ public class Finances_DL{
 
     public double getInterestRate(){return interestRate;}
 
+    public void setMenuStatus(boolean status){menuRunning = status;}
+
+    public boolean getMenuStatus(){return menuRunning;}
+
+    public int getUtilCost(){return utilityCost;}
+
     public double getLoanRange(){
         return ((creditScore / 800) * 100000); // calculates the max amount of money someone can loan out with a given credit score
+    }
+
+    public void incrementLoanDays(int amt){
+        daysSinceLastLoan += amt;
     }
 
     // Prints the max amount of money you can loan out (pretty useless, need to delete later)
@@ -56,20 +66,16 @@ public class Finances_DL{
     public void runMenu(){
         try{
             int choice = input.nextInt();
-        }
-        catch (Exception e){
-            System.out.println("Invalid input, try again.")
-        }
-        switch(choice){
+            switch(choice){
             // Prints out account information
             case 1:
-                String details = String.format("\n[Account Details]\nBalance: $%.2f\nCredit Score: %.0f\nOutstanding Debt: $%.2f\n ",balance,creditScore,debt);
+                String details = String.format("\n[Account Details]\nBalance: $%.2f\nCredit Score: %.0f\nOutstanding Debt: $%.2f ",balance,creditScore,debt);
                 System.out.println(details);
                 break;
             // Applying for a loan; knows when you have taken a loan out so you can't spam it :)
             case 2:
                 if(daysSinceLastLoan >= 2){
-                    String loanDisclaimer = String.format("\nYou have requested for a loan from Stez Bank. For reference, your credit score is %.0f, meaning you can\nloan out at max $%.2f and a %.2f %s chance of a successful loan.\n",creditScore,getLoanRange(),loanApprovalRate(),"%");
+                    String loanDisclaimer = String.format("\nYou have requested for a loan from Stez Bank. For reference, your credit score is %.0f, meaning you can\nloan out at max $%.2f and a %.2f %s chance of a successful loan.",creditScore,getLoanRange(),loanApprovalRate(),"%");
                     System.out.println(loanDisclaimer);
                     System.out.println("\nHow much do you want to loan out?\n");
                     double loanAmt = input.nextDouble();
@@ -100,12 +106,12 @@ public class Finances_DL{
             default: 
                 System.out.println("Please enter a valid input");
             }
-            }
-
-
+        }
+        catch (Exception e){
+            System.out.println("Invalid input, try again.");
+        }
         
-
-    
+    }
 
     // mathematical model to calculate the probability of securing a successful loan based on credit score
     public double loanApprovalRate(){
@@ -125,7 +131,7 @@ public class Finances_DL{
             debt += amt * (1 + (interestRate/100));
             //System.out.println("You had a " + String.format("%.2f", loanApprovalRate()) + "% chance to get a loan!");
             System.out.println("\nYou have just taken out a loan for $" + String.format("%.2f",amt) + " at an interest rate of " + String.format("%.2f",getInterestRate()) + 
-                " percent. Your balance is now at $" + String.format("%.2f",getBalance()) + " and you owe $" + String.format("%.2f\n",getDebt()));
+                " percent. Your balance is now at $" + String.format("%.2f",getBalance()) + " and you owe $" + String.format("%.2f",getDebt()));
             daysSinceLastLoan = 0;
         }
 
@@ -134,16 +140,16 @@ public class Finances_DL{
         */
 
         else if (debt > 0) {
-            System.out.println("\nYou must repay all of your existing debts before applying for another loan.\n");
+            System.out.println("\nYou must repay all of your existing debts before applying for another loan.");
         }
         else if (amt > getLoanRange()) {
-            System.out.println("\nDue to your credit score, you are not allowed to loan out this amount of money. You are allowed to loan out up to $" + String.format("%.2f\n",getLoanRange()));
+            System.out.println("\nDue to your credit score, you are not allowed to loan out this amount of money. You are allowed to loan out up to $" + String.format("%.2f",getLoanRange()));
         }
         else if (amt <= 0) {
-            System.out.println("\nYou can't loan out zero or negative amounts.\n");
+            System.out.println("\nYou can't loan out zero or negative amounts.");
         }
         else{
-            System.out.println("\nWe're sorry, due to your credit score, your loan was not approved. You may apply for another loan in 2 days.\n");
+            System.out.println("\nWe're sorry, due to your credit score, your loan was not approved. You may apply for another loan in 2 days.");
             daysSinceLastLoan = 0;
         }
 
@@ -158,7 +164,7 @@ public class Finances_DL{
             debt = 0;
             balance -= debt;
             creditScore += 25;
-            System.out.println("\nCongratulations! You have fully paid off your debt. Enjoy the +25 credit score!\n"); // Need to change this, can be exploited :D
+            System.out.println("\nCongratulations! You have fully paid off your debt. Enjoy the +25 credit score!"); // Need to change this, can be exploited :D
         }
         else{
             debt -= amt;

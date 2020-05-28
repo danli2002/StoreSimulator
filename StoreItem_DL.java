@@ -9,12 +9,12 @@ import java.util.ArrayList;
 
 public class StoreItem_DL{
     
-    public String n; // name of the item
-    public double rPrice; // retail price of the item
-    public int bulkQuantity; // number of units in a bulk quantity
-    public double bPrice; // price of a bulk purchase of the specific item
-    public int quantity; // quantity of specific item in stock
-    public double pIndex; // a number that basically tells how popular an item is, determines sales
+    private String n; // name of the item
+    private double rPrice; // retail price of the item
+    private int bulkQuantity; // number of units in a bulk quantity
+    private double bPrice; // price of a bulk purchase of the specific item
+    private int quantity; // quantity of specific item in stock
+    private double pIndex; // a number that basically tells how popular an item is, determines sales
     
     public StoreItem_DL(String name, double retailPrice, int bulkQuant, double bulkPrice, double popIndex){
         n = name;
@@ -43,6 +43,14 @@ public class StoreItem_DL{
 
     public int getQuantity(){
         return quantity;
+    }
+
+    public void setQuantity(int amt){
+        quantity = 0;
+    }
+
+    public void incrementQuantity(int amt){
+        quantity += amt;
     }
 
     public double getPIndex(){

@@ -14,15 +14,15 @@ public class InventoryManagement{
 
     public void buyProduct(StoreItem_DL item, Finances_DL account, int amt){
         try{
-            if(account.balance >= amt*(item.bPrice)){
+            if(account.getBalance() >= amt*(item.getBulkPrice())){
                 // Confirmation, avoid accidentally buying stuff
-                String warning = String.format("\nYou are about to buy %d cases of %s for the total price of %.2f. Are you sure? Y/N:\n",amt,item.n,amt*(item.bPrice));
+                String warning = String.format("\nYou are about to buy %d cases of %s for the total price of %.2f. Are you sure? Y/N:\n",amt,item.getName(),amt*(item.getBulkPrice()));
                 System.out.println(warning);
                 String choice = scan.next();
                 if(choice.equals("y") || choice.equals("Y")){
-                    item.quantity += amt * item.bulkQuantity;
-                    account.balance -= amt * item.bPrice;
-                    String confirmation = String.format("\nYou just bought %d cases of %s for the total price of %.2f.",amt,item.n,amt*(item.bPrice));
+                    item.incrementQuantity(amt * item.getBulkQuant());
+                    account.addBalance(-1 * amt * item.getBulkPrice());
+                    String confirmation = String.format("\nYou just bought %d cases of %s for the total price of %.2f.",amt,item.getName(),amt*(item.getBulkPrice()));
                     System.out.println(confirmation);
                 }
                 else if(choice.equals("n") || choice.equals("N")) {
