@@ -137,7 +137,12 @@ public class GroceryStore_DL{
             System.out.println(heading);
             //System.out.println("\n[Day " + currentDay + "]\n");
             showNavMenu();
-            int choice = inputScan.nextInt();
+            try{
+                int choice = inputScan.nextInt();
+            }
+            catch(Exception e){
+                System.out.println("Invalid input, please try again.")
+            }
             // Switch cases that handle different inputs from users
             switch(choice){
                 case 1:

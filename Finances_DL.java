@@ -54,7 +54,12 @@ public class Finances_DL{
 
     // this function handles the 'Bank' menu that you access through the main menu. I didn't want to spaghetti up my main code so I offloaded it here. (nested 'if' statements are bad)
     public void runMenu(){
-        int choice = input.nextInt();
+        try{
+            int choice = input.nextInt();
+        }
+        catch (Exception e){
+            System.out.println("Invalid input, try again.")
+        }
         switch(choice){
             // Prints out account information
             case 1:
