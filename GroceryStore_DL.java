@@ -144,12 +144,18 @@ public class GroceryStore_DL{
                     System.out.println("\nPlease select an item from the list to buy a case\n");
                     showItemData();
                     int itemChoice = inputScan.nextInt();
-                    System.out.println(String.format("\nHow many bulk-units of %s would you like to buy?\n",items[itemChoice - 1].n));
-                    int itemQuant = inputScan.nextInt();
-                    InventoryManager.buyProduct(items[itemChoice - 1], finances, itemQuant);
-                    break;
+                    try{
+                        System.out.println(String.format("\nHow many bulk-units of %s would you like to buy?\n",items[itemChoice - 1].n));
+                        int itemQuant = inputScan.nextInt();
+                        InventoryManager.buyProduct(items[itemChoice - 1], finances, itemQuant);
+                        break;
+                    }
+                    catch (Exception e){
+                        System.out.println("\nInvalid input, try again please!\n");
+                        break;
+                    }
                 case 2:
-                    System.out.println("\nSales records feature coming soon\n");
+                    System.out.println("\nSales records feature coming soon");
                     break;
                 case 3:
                     finances.menuRunning = true;
