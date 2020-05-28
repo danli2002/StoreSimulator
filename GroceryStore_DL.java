@@ -15,11 +15,12 @@ public class GroceryStore_DL{
     ArrayList<String> data = scanner.returnData();
     StoreItem_DL[] items = new StoreItem_DL[data.size() / 5];
     Finances_DL finances = new Finances_DL();
-    Scanner inputScan = new Scanner(System.in);
     InventoryManagement InventoryManager = new InventoryManagement();
+    EventHandler events = new EventHandler();
     private boolean running = true;
     private int currentDay = 0;
     private int utilityBillCounter = 0;
+    private String dailyHeadlines;
     public GroceryStore_DL(){
         init();
         runStore();
@@ -46,6 +47,7 @@ public class GroceryStore_DL{
         System.out.println("\n\nWelcome to Store Simulator. Your goal is to successfully manage a small store, which tasks you with buying and selling goods.");
         System.out.println("Circumstances change, so you will have to change prices and adjust some factors to keep your store profitable.");
         System.out.println("To start, take out a simple loan from the bank. You will have to pay it back. Good luck!\n");
+        dailyHeadlines = generateHeadlines();
     }
 
     public void showItemData(){
@@ -115,7 +117,7 @@ public class GroceryStore_DL{
         // Displays the basic navigation menu
         System.out.println("\nType in the number of the option you want to navigate to:\n");
         String header = String.format("%-10s %-10s","[ID]","[Option]");
-        String[] options = {"Buy Stock","Check Records","Bank","Open Store","Quit"};
+        String[] options = {"Buy Stock","Check Headlines","Bank","Open Store","Quit"};
         // Prints out the cool formatted header
         System.out.println(header);
         for(int i =0; i < options.length;i++){
@@ -133,6 +135,20 @@ public class GroceryStore_DL{
         System.out.println();
     }
 
+    public String generateHeadlines(){
+        String indEventsFormat = "\n[Today's News:]\n\n";
+        double coinflip = Math.random();
+        if(coinflip < 0.9){
+            for(int i = 0; i < items.length; i++){
+                indEventsFormat += events.indShock(items[i]) + "\n";
+            }
+            return indEventsFormat;
+        }
+        else{
+            return("\nToday's News:\n\n" + events.marketShock(items));
+        }
+    }
+
     public void runStore(){
         // Check if the store is not technically bankrupt and is still running, according to the user conditions
         while (finances.isBankrupt() == false && running == true){
@@ -144,6 +160,7 @@ public class GroceryStore_DL{
             //System.out.println("\n[Day " + currentDay + "]\n");
             showNavMenu();
             try{
+                Scanner inputScan = new Scanner(System.in);
                 int choice = inputScan.nextInt();
                 switch(choice){
                 case 1:
@@ -161,7 +178,8 @@ public class GroceryStore_DL{
                         break;
                     }
                 case 2:
-                    System.out.println("\nSales records feature coming soon");
+                    System.out.println(dailyHeadlines);
+                    //System.out.println("\nSales records feature coming soon");
                     break;
                 case 3:
                     finances.setMenuStatus(true);
@@ -173,6 +191,7 @@ public class GroceryStore_DL{
                     break;
                 case 4:
                     dailySale();
+                    dailyHeadlines = generateHeadlines();
                     currentDay += 1;
                     finances.incrementLoanDays(1);
                     utilityBillCounter += 1;
@@ -192,7 +211,7 @@ public class GroceryStore_DL{
             }
             }
             catch(Exception e){
-                System.out.println("Invalid input, please try again.");
+                System.out.println("\nInvalid input, please try again.");
             }
             // Switch cases that handle different inputs from users
         }

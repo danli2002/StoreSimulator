@@ -163,7 +163,10 @@ public class Finances_DL{
         else if (amt >= debt) {
             debt = 0;
             balance -= debt;
-            creditScore += 25;
+            if(creditScore + 25 <= 800){
+                creditScore += 25;
+            }
+            else{creditScore = 800;}
             System.out.println("\nCongratulations! You have fully paid off your debt. Enjoy the +25 credit score!"); // Need to change this, can be exploited :D
         }
         else{

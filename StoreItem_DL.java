@@ -57,6 +57,14 @@ public class StoreItem_DL{
         return pIndex;
     }
 
+    public void incrementPIndex(double amt){
+        pIndex *= amt;
+    }
+
+    public void setPIndex(double index){
+        pIndex = index;
+    }
+
     public String toString(){
         String itemString = String.format("%-15s %-15.2f %-15d %-15d %-15.2f %-15.2f",
         n,rPrice,quantity,bulkQuantity,bPrice,pIndex); // returns a formatted string so it can be easily printed out
