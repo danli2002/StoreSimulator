@@ -19,7 +19,7 @@ public class StoreItem_DL{
     public StoreItem_DL(String name, double retailPrice, int bulkQuant, double bulkPrice, double popIndex){
         n = name;
         rPrice = retailPrice;
-        quantity = 50; // quantity of items are always going to start at this(DEBUG PURPOSES)
+        quantity = 0; // quantity of items are always going to start at this(DEBUG PURPOSES)
         bulkQuantity = bulkQuant;
         bPrice = bulkPrice;
         pIndex = popIndex;
@@ -65,10 +65,19 @@ public class StoreItem_DL{
         pIndex = index;
     }
 
+    public void setPrice(double price){
+        rPrice = price;
+    }
+
     public String toString(){
-        String itemString = String.format("%-15s %-15.2f %-15d %-15d %-15.2f %-15.2f",
-        n,rPrice,quantity,bulkQuantity,bPrice,pIndex); // returns a formatted string so it can be easily printed out
+        String itemString = String.format("%-18s %-18.2f %-18d %-18d %-18.2f",
+        n,rPrice,quantity,bulkQuantity,bPrice); // returns a formatted string so it can be easily printed out
         return itemString;
+    }
+
+    public void priceShock(double oldPrice, double newPrice){
+        double multiplier = oldPrice / newPrice;
+        pIndex *= multiplier;
     }
 
 }

@@ -52,19 +52,19 @@ public class GroceryStore_DL{
 
     public void showItemData(){
         // Prints out headers, this is for debug purposes for now
-        System.out.printf("%-15s","Item ID");
-        System.out.printf("%-15s","Item Name");
-        System.out.printf("%-15s","Item Price");
-        System.out.printf("%-15s","Item Quantity");
-        System.out.printf("%-15s","Bulk Quantity");
-        System.out.printf("%-15s","Bulk Price");
-        System.out.printf("%-15s","Popularity Index");
+        System.out.printf("%-18s","[Item ID]");
+        System.out.printf("%-18s","[Item Name]");
+        System.out.printf("%-18s","[Item Price]");
+        System.out.printf("%-18s","[Item Quantity]");
+        System.out.printf("%-18s","[Bulk Quantity]");
+        System.out.printf("%-18s","[Bulk Price]");
+        //System.out.printf("%-15s","Popularity Index");
         System.out.println();
 
         // Prints out items and their details in a nice format
         for(int q = 0; q < items.length; q++){
             String formatted = items[q].toString();
-            System.out.println(String.format("%-15d %s",q+1,formatted));
+            System.out.println(String.format("%-18d%s",q+1,formatted));
         }
         System.out.println();
     }
@@ -72,6 +72,7 @@ public class GroceryStore_DL{
     // Daily business at the store
     public void dailySale(){
         System.out.println();
+        double dailyRevenue = 0;
         for(int i = 0; i < items.length; i++){
             StoreItem_DL item = items[i];
             // Prints out the drop off in popularity statistics and the random seed of the daily sales (i.e. sales are determined randomly within a range, depending on it's pop. index)
@@ -97,27 +98,30 @@ public class GroceryStore_DL{
             int unitSold = (int)(saleRate * item.getQuantity());
             if(unitSold > item.getQuantity()){
                 finances.addBalance(item.getQuantity() * item.getRetailPrice());
+                dailyRevenue += item.getQuantity() * item.getRetailPrice();
                 item.setQuantity(0);
-                System.out.println(String.format("%s completely sold out at a popularity index of %.2f",item.getName(),item.getPIndex()));
+                System.out.println(String.format("%s completely sold out.",item.getName()));
             }
             else if (unitSold < item.getQuantity() && unitSold != 0) {
                 finances.addBalance(unitSold * item.getRetailPrice());
+                dailyRevenue += item.getQuantity() * item.getRetailPrice();
                 item.incrementQuantity(-1 * unitSold);
-                System.out.println(String.format("%s sold %d units at a popularity index of %.2f",item.getName(),unitSold,item.getPIndex()));
+                System.out.println(String.format("%s sold %d units.",item.getName(),unitSold));
             }
             else {
-                System.out.println(String.format("%s sold nothing at a popularity index of %.2f",item.getName(),item.getPIndex()));
+                System.out.println(String.format("%s sold nothing.",item.getName()));
             }
 
         }
         System.out.println("\nYour balance is now at $" + String.format("%.2f",finances.getBalance()));
+        System.out.println(String.format("\nYour daily revenue is $%.2f",dailyRevenue));
     }
 
     public void showNavMenu(){
         // Displays the basic navigation menu
         System.out.println("\nType in the number of the option you want to navigate to:\n");
         String header = String.format("%-10s %-10s","[ID]","[Option]");
-        String[] options = {"Buy Stock","Check Headlines","Bank","Open Store","Quit"};
+        String[] options = {"Buy Stock","Check Headlines","Bank","Adjust Prices","Open Store","Quit"};
         // Prints out the cool formatted header
         System.out.println(header);
         for(int i =0; i < options.length;i++){
@@ -141,7 +145,12 @@ public class GroceryStore_DL{
         double coinflip = Math.random();
         if(coinflip < 0.9){
             for(int i = 0; i < items.length; i++){
-                indEventsFormat += events.indShock(items[i]) + "\n";
+                if((events.indShock(items[i])).equals("")){
+                    ;
+                }
+                else{
+                    indEventsFormat += events.indShock(items[i]) + "\n";
+                }
             }
             return indEventsFormat;
         }
@@ -192,6 +201,28 @@ public class GroceryStore_DL{
                     }
                     break;
                 case 4:
+                    try{
+                        System.out.println();
+                        showItemData();
+                        System.out.println("Select an item ID from the list to adjust prices:\n");
+                        int iChoice = inputScan.nextInt();
+                        System.out.println("\nYou have selected to change the retail price of " + items[iChoice - 1].getName() + ". What would you like to set it to?\n");
+                        System.out.print("$");
+                        double pChoice = inputScan.nextDouble();
+                        if(pChoice < 0){
+                            System.out.println("Error: You cannot set a negative price");
+                        }
+                        else{
+                            System.out.println(String.format("\nYou have adjusted the price of %s from $%.2f to $%.2f",items[iChoice - 1].getName(),items[iChoice - 1].getRetailPrice(), pChoice));
+                            InventoryManager.adjustPrice(items[iChoice - 1], pChoice);
+                        }
+
+                    }
+                    catch (Exception e){
+                        System.out.println("\nInvalid input, try again");
+                    }
+                    break;
+                case 5:
                     dailySale(); // simulate a days worth of sales
                     dailyHeadlines = generateHeadlines(); // generate new headlines every day
                     currentDay += 1;
@@ -199,11 +230,11 @@ public class GroceryStore_DL{
                     utilityBillCounter += 1;
                     if(utilityBillCounter == 7){ // pay utility bills every 7 days, or every week
                         finances.payUtilities();
-                        System.out.println("You just paid your weekly $" + finances.getUtilCost() + " utility costs.\n");
+                        System.out.println("You just paid your weekly $" + finances.getUtilCost() + " for utility costs, rent, and other fees.\n");
                         utilityBillCounter = 0;
                     }
                     break;
-                case 5:
+                case 6:
                     System.out.println("\nGoodbye!\n");
                     running = false;
                     break;

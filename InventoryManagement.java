@@ -42,4 +42,9 @@ public class InventoryManagement{
         }
 
     }
+
+    public void adjustPrice(StoreItem_DL item, double price){
+        item.priceShock(item.getRetailPrice(),price);
+        item.setPrice(price);
+    }
 }

@@ -15,7 +15,7 @@ public class Finances_DL{
     private double debt;
     private double creditScore; // default credit score
     private double interestRate;
-    private static final int utilityCost = 200; // weekly costs of utilities
+    private static final int utilityCost = 500; // weekly costs of utilities
     private int daysSinceLastLoan = 2; // avoid loan spamming
     private boolean menuRunning = true; // controls the 'active' state of the menu
     Scanner input = new Scanner(System.in);
@@ -78,6 +78,7 @@ public class Finances_DL{
                     String loanDisclaimer = String.format("\nYou have requested for a loan from Stez Bank. For reference, your credit score is %.0f, meaning you can\nloan out at max $%.2f and a %.2f %s chance of a successful loan.",creditScore,getLoanRange(),loanApprovalRate(),"%");
                     System.out.println(loanDisclaimer);
                     System.out.println("\nHow much do you want to loan out?\n");
+                    System.out.print("$");
                     double loanAmt = input.nextDouble();
                     applyForLoan(loanAmt);
                 }
@@ -91,6 +92,7 @@ public class Finances_DL{
                 String confirm = input.next();
                 if(confirm.equals("y") || confirm.equals("Y")){
                     System.out.println("\nHow much do you want to pay right now?:\n");
+                    System.out.print("$");
                     double debtPayment = input.nextDouble();
                     payDebt(debtPayment);
                 }

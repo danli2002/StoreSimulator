@@ -13,7 +13,7 @@ public class EventHandler{
     public String indShock(StoreItem_DL item){
         double coinflip = Math.random();
         // 50/50 chance of getting a demand shock in any of these products
-        if (coinflip > 0.5){
+        if (coinflip > 0.8){
             double change = Math.random() + 0.2;
             // headlines associated with positive demand shocks
             String[] posHeadlines = {
@@ -49,7 +49,20 @@ public class EventHandler{
             }
         }
         // returns nothing if there's no news, this sucks because it generates a lot of unnecessary whitespace. 
-        else{return "";}
+        else{
+            String[] neutralHeadlines = {
+                "Dog escapes from shelter to save the world",
+                "Studies show that for every 60 seconds that go by in Europe, a minute passes",
+                "Local man saves cat from tree",
+                "Local man saves dog from tree",
+                "Local woman saves cat from tree",
+                "Local man saves cat from tree",
+                "Eating food may be a good cure for hunger, studies show"
+                };
+            int seed = (int)(Math.random() * (neutralHeadlines.length - 1));
+            //return neutralHeadlines[seed];
+            return "";
+        }
 
     }
     // demand shocks that affect the all goods

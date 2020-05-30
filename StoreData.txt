@@ -1,4 +1,19 @@
-Toilet Paper,5.00,25,30,0.85
-Gucci,300.00,25,30,0.45
+Apple Juice,2.00,40,50,0.5
+Beef Steaks,9.00,20,130,0.5
+Broccoli,1.00,60,30,0.5
+Carrots,1.00,60,30,0.5
+Cereal,3.00,50,90,0.5
+Cola,1.50,25,20,0.5
+Diet Cola,1.50,25,20,0.5
+Grapes,1.00,60,30,0.5
+Lettuce,1.00,60,30,0.5
+Milk,3.00,25,55,0.5
+Orange Juice,2.00,40,55,0.5
+Pork Chops,5.00,20,75,0.5
+Spinach,1.00,60,30,0.5
+Toilet Paper,5.00,25,50,0.5
+Wheat Bread,2.00,50,55,0.5
+White Bread,1.00,50,25,0.5
+
 
 
