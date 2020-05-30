@@ -13,6 +13,7 @@ You're going to want to compile GrocerySim.java with `javac GrocerySim.java` and
 * Fix some poorly written code (mathematical models and such)
 * Add random events (pandemics, disasters, economic crisis)
 * ~Finish the financing system (bank loans, credit score, etc.)~ Finished 5/27/20!
+* Saveable game data in a txt file
 * Port everything to an easy to use GUI with jFrame (pretty tough)
 
 # Preview Images
