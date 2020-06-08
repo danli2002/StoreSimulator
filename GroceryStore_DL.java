@@ -225,6 +225,11 @@ public class GroceryStore_DL{
                 case 5:
                     dailySale(); // simulate a days worth of sales
                     dailyHeadlines = generateHeadlines(); // generate new headlines every day
+                    for(int p = 0; p < items.length;p++){
+                        if(items[p].getPIndex() < 0.20){
+                            items[p].setPIndex(0.20);
+                        }
+                    }
                     currentDay += 1;
                     finances.incrementLoanDays(1); // counter for loans, how long has it been since I took out my last loan?
                     utilityBillCounter += 1;
