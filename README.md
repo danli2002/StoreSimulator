@@ -11,15 +11,20 @@ You're going to want to compile GrocerySim.java with `javac GrocerySim.java` and
 
 # To-Do
 * Fix some poorly written code (mathematical models and such)
-* Add random events (pandemics, disasters, economic crisis)
+* ~Add random events (pandemics, disasters, economic crisis)~ Finished 5/30/20
 * ~Finish the financing system (bank loans, credit score, etc.)~ Finished 5/27/20!
 * Saveable game data in a txt file
 * Port everything to an easy to use GUI with jFrame (pretty tough)
 
 # Preview Images
 ## Daily View Panel
-![Daily View Panel](https://i.imgur.com/m6GaZTu.png)
+![Daily View Panel](https://i.imgur.com/Dm1T4Sf.png)
 ## Taking Out a Loan
 ![Taking out a Loan](https://i.imgur.com/BZyklUk.png)
+## Checking Headlines
+![Checking Headlines](https://i.imgur.com/5Iqjk2F.png)
 ## Buying Stock
-![Buying Stock](https://i.imgur.com/zGXJ75j.png)
+![Buying Stock](https://i.imgur.com/Xz3A9Qn.png)
+## Daily Sales Report
+![Sales Report](https://i.imgur.com/2hvEcGq.png)
+
